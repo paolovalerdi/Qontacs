@@ -3,6 +3,8 @@
         <file>main.qml</file>
         <file>Contact.qml</file>
         <file>add_black_24dp.svg</file>
-        <file>AddContact.qml</file>
+        <file>AddContactScreen.qml</file>
+        <file>ContactListScreen.qml</file>
+        <file>arrow_back.svg</file>
     </qresource>
 </RCC>

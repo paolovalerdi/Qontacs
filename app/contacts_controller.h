@@ -4,6 +4,8 @@
 #include <QJsonObject>
 #include <contacts_manager.h>
 
+typedef QString JSON;
+
 class ContactsController : public QObject
 {
     Q_OBJECT
@@ -15,7 +17,7 @@ public slots:
     void insert(QString name, QString lastName, QString phone);
 
 signals:
-    void stateChange(QString state);
+    void stateChange(JSON state);
 private:
     ContactsManager manager;
 };

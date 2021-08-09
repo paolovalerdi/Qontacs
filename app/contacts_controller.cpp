@@ -7,6 +7,7 @@ ContactsController::ContactsController(ContactsManager manager, QObject *parent)
 
 void ContactsController::update()
 {
+    qDebug() << "Updating list";
     QString state = "[";
     auto contacts = QStringList();
     for (auto contact : manager.contacts()) {
