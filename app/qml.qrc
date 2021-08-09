@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Contact.qml</file>
+        <file>add_black_24dp.svg</file>
+        <file>AddContact.qml</file>
+    </qresource>
+</RCC>
