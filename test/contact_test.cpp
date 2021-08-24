@@ -1,48 +1,43 @@
 #include <QtTest>
+#include <QJsonObject>
 
-// add necessary includes here
+#include "contact.h"
 
-class foo : public QObject
+class ContactTest : public QObject
 {
     Q_OBJECT
 
 public:
-    foo();
-    ~foo();
+    ContactTest();
+    ~ContactTest();
 
 private slots:
-    void initTestCase();
-    void cleanupTestCase();
-    void test_case1();
-
+    void toJsonReturnsAProperJsonObject();
 };
 
-foo::foo()
+ContactTest::ContactTest()
 {
 
 }
 
-foo::~foo()
+ContactTest::~ContactTest()
 {
 
 }
 
-void foo::initTestCase()
+void ContactTest::toJsonReturnsAProperJsonObject()
 {
+    auto paolo = Contact(1, "Paolo", "me@gmail.com", "1234567890");
+    QJsonObject expected {
+        {"id", 1},
+        {"name", "Paolo"},
+        {"email", "me@gmail.com"},
+        {"phone", "1234567890"},
+    };
 
+    QCOMPARE(paolo.toJson(), expected);
 }
 
-void foo::cleanupTestCase()
-{
+//QTEST_APPLESS_MAIN(ContactTest)
 
-
-}
-
-void foo::test_case1()
-{
-
-}
-
-QTEST_APPLESS_MAIN(foo)
-
-#include "tst_foo.moc"
+#include "contact_test.moc"
