@@ -68,11 +68,13 @@ Item {
         spacing: 8
         model: contactsModel
         delegate: Contact {
+            anchors.left: listView.left
+            anchors.right: listView.right
             contact: model
         }
     }
 
-    RoundButton{
+    RoundButton {
         width: 64
         height: 64
         icon.source: "qrc:/add_black_24dp.svg"

@@ -6,5 +6,6 @@
         <file>AddContactScreen.qml</file>
         <file>ContactListScreen.qml</file>
         <file>arrow_back.svg</file>
+        <file>ic_delete.svg</file>
     </qresource>
 </RCC>

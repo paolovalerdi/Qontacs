@@ -36,9 +36,11 @@ int main(int argc, char *argv[])
     qDebug() << "####CREATING DATABASE IF NOT EXISTS###";
     QSqlQuery query;
     auto exec = query.exec("CREATE TABLE IF NOT EXISTS contacts ("
-               "name TEXT NOT NULL PRIMARY KEY, "
-               "last_name TEXT NOT NULL, "
-               "phone TEXT NOT NULL)");
+               "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "
+               "name TEXT NOT NULL, "
+               "email TEXT NOT NULL, "
+               "phone TEXT NOT NULL"
+               ");");
     qDebug() << (exec ? "Created or ignored" : query.lastError().text());
 
     auto contactsManager = ContactsManager(database);
