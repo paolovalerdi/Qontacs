@@ -17,6 +17,8 @@ public:
     const QString &email() const;
     const QString &phone() const;
 
+    bool operator==(const Contact& other) const;
+
     QJsonObject toJson();
     Contact copy(int* id = nullptr,
                  QString* name = nullptr,

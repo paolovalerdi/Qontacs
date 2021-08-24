@@ -43,6 +43,14 @@ const QString &Contact::phone() const
     return _phone;
 }
 
+bool Contact::operator==(const Contact &other) const
+{
+    return this->_id == other._id &&
+            this->_name == other._name &&
+            this->_email == other._email &&
+            this->_phone == other._phone;
+}
+
 QJsonObject Contact::toJson()
 {
     QJsonObject json {
