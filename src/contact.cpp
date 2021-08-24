@@ -1,9 +1,31 @@
 #include "contact.h"
 
+Contact Contact::fromSqlQuery(QSqlQuery query)
+{
+    auto id = query.value("id").toInt();
+    auto name = query.value("name").toString();
+    auto email = query.value("email").toString();
+    auto phone = query.value("phone").toString();
+    return Contact(id, name, email, phone);
+}
+
 Contact::Contact(QString name, QString lastName, QString phone)
-    : _name(name),
-      _lastName(lastName),
+    :_id(-1),
+      _name(name),
+      _email(lastName),
       _phone(phone) {
+}
+
+Contact::Contact(int id, QString name, QString lastName, QString phone)
+    : _id(id),
+      _name(name),
+      _email(lastName),
+      _phone(phone) {
+}
+
+const int &Contact::id() const
+{
+    return _id;
 }
 
 const QString &Contact::name() const
@@ -11,9 +33,9 @@ const QString &Contact::name() const
     return _name;
 }
 
-const QString &Contact::lastName() const
+const QString &Contact::email() const
 {
-    return _lastName;
+    return _email;
 }
 
 const QString &Contact::phone() const
@@ -21,8 +43,21 @@ const QString &Contact::phone() const
     return _phone;
 }
 
-QString Contact::toJson()
+QJsonObject Contact::toJson()
 {
-    auto name = QString("%1 %2").arg(_name).arg(_lastName);
-    return QString("{\"name\": \"%1\", \"phone\": \"%2\"}").arg(name, _phone);
+    QJsonObject json {
+        {"id", _id},
+        {"name", _name},
+        {"email", _email},
+        {"phone", _phone},
+    };
+    return json;
+}
+
+Contact Contact::copy(int *id, QString *name, QString *email, QString *phone)
+{
+    return Contact(id != nullptr ? *id : _id,
+                   name != nullptr ? *name : _name,
+                   email != nullptr ? *email : _email,
+                   phone != nullptr ? *phone : _phone);
 }

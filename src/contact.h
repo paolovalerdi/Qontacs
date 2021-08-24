@@ -1,17 +1,30 @@
 #pragma once
 
 #include <QString>
+#include <QSqlQuery>
+#include <QJsonObject>
 
 class Contact
 {
 public:
-    Contact(QString name, QString lastName, QString phone);
+    static Contact fromSqlQuery(QSqlQuery query);
+
+    Contact(QString name, QString email, QString phone);
+    Contact(int id, QString name, QString email, QString phone);
+
+    const int &id() const;
     const QString &name() const;
-    const QString &lastName() const;
+    const QString &email() const;
     const QString &phone() const;
-    QString toJson();
+
+    QJsonObject toJson();
+    Contact copy(int* id = nullptr,
+                 QString* name = nullptr,
+                 QString* email = nullptr,
+                 QString* phone = nullptr);
 private:
+    int _id;
     QString _name;
-    QString _lastName;
+    QString _email;
     QString _phone;
 };
