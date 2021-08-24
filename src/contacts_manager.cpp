@@ -9,7 +9,7 @@ QList<Contact> ContactsManager::contacts()
 {
     auto contacts = QList<Contact>();
     auto query = QSqlQuery(db);
-    if (query.exec("SELECT * FROM contacts")) {
+    if (query.exec("SELECT * FROM contacts ORDER BY name ASC")) {
         while(query.next()) {
             auto contact = Contact::fromSqlQuery(query);
             contacts.append(contact);
