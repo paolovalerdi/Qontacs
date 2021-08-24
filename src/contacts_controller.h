@@ -1,7 +1,8 @@
 #pragma once
 
 #include <QObject>
-#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonDocument>
 #include <contacts_manager.h>
 
 typedef QString JSON;

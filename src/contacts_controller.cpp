@@ -7,20 +7,17 @@ ContactsController::ContactsController(ContactsManager manager, QObject *parent)
 
 void ContactsController::update()
 {
-    qDebug() << "Updating list";
-    QString state = "[";
-    auto contacts = QStringList();
+    auto contacts = QJsonArray();
     for (auto contact : manager.contacts()) {
         contacts.append(contact.toJson());
     }
-    state = state += contacts.join(",");
-    state = state += "]";
-
-    emit stateChange(state);
+    QJsonDocument document;
+    document.setArray(contacts);
+    emit stateChange(document.toJson());
 }
 
-void ContactsController::insert(QString name, QString lastName, QString phone)
+void ContactsController::insert(QString name, QString email, QString phone)
 {
-    manager.insert(Contact(name, lastName, phone));
+    manager.insert(Contact(name, email, phone));
     update();
 }
