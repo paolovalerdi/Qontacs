@@ -11,6 +11,8 @@ private:
     QSqlDatabase db;
 public:
     ContactsManager(QSqlDatabase db);
-    void insert(Contact contact);
     QList<Contact> contacts();
+    void insert(Contact contact);
+    void update(Contact contact);
+    void remove(Contact contact);
 };
